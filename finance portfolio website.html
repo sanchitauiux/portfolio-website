@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanchita Jadhav — Financial Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0f1a2e;
+    --ink2: #2a3d5a;
+    --muted: #6b7f99;
+    --accent: #c9a84c;
+    --accent2: #e8d49a;
+    --bg: #f7f4ef;
+    --white: #ffffff;
+    --card: #ffffff;
+    --border: #e2ddd5;
+    --tag-bg: #0f1a2e;
+    --tag-text: #e8d49a;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--ink);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-left::after {
+    content: '';
+    position: absolute;
+    right: -40px;
+    top: 0;
+    width: 80px;
+    height: 100%;
+    background: var(--ink);
+    clip-path: polygon(0 0, 0 100%, 100% 100%);
+    z-index: 2;
+  }
+
+  .hero-tag {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 6vw, 80px);
+    font-weight: 300;
+    color: #ffffff;
+    line-height: 1.05;
+    margin-bottom: 8px;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--accent2);
+  }
+
+  .hero-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2.2vw, 26px);
+    font-weight: 300;
+    color: var(--muted);
+    margin-bottom: 36px;
+    letter-spacing: 0.5px;
+  }
+
+  .hero-bio {
+    font-size: 14px;
+    color: #9aabb8;
+    line-height: 1.8;
+    max-width: 380px;
+    margin-bottom: 44px;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--ink);
+    padding: 13px 28px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+
+  .btn-outline {
+    border: 1px solid #3a4f6a;
+    color: #9aabb8;
+    padding: 13px 28px;
+    font-size: 13px;
+    font-weight: 400;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+  .hero-right {
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px 80px 100px;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-bottom: 52px;
+  }
+
+  .stat-box {
+    border-left: 2px solid var(--accent);
+    padding-left: 18px;
+  }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .contact-strip {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-item:hover { color: var(--accent); }
+
+  .contact-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 90px 0; }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.1;
+    margin-bottom: 52px;
+  }
+
+  /* ── SERVICES ── */
+  .services-bg { background: var(--white); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .service-card {
+    background: var(--white);
+    padding: 40px 36px;
+    position: relative;
+    transition: background 0.25s;
+  }
+  .service-card:hover { background: var(--ink); }
+  .service-card:hover .service-title,
+  .service-card:hover .service-desc,
+  .service-card:hover .service-num { color: #fff; }
+  .service-card:hover .service-icon { background: rgba(255,255,255,0.1); color: var(--accent); }
+
+  .service-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    display: block;
+    transition: color 0.25s;
+  }
+
+  .service-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+    transition: background 0.25s, color 0.25s;
+  }
+
+  .service-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 12px;
+    transition: color 0.25s;
+  }
+
+  .service-desc {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.75;
+    transition: color 0.25s;
+  }
+
+  /* ── EXPERIENCE ── */
+  .exp-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .exp-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 36px;
+    position: relative;
+  }
+
+  .exp-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--accent);
+  }
+
+  .exp-company {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .exp-role {
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+
+  .exp-date {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+
+  .exp-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .exp-list li {
+    font-size: 13.5px;
+    color: var(--ink2);
+    line-height: 1.7;
+    padding-left: 18px;
+    position: relative;
+  }
+
+  .exp-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 12px;
+  }
+
+  /* ── SKILLS ── */
+  .skills-bg { background: var(--ink); }
+  .skills-bg .section-title { color: var(--white); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+
+  .skill-item {
+    border: 1px solid #2a3d5a;
+    padding: 24px 26px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .skill-item:hover { border-color: var(--accent); background: rgba(201,168,76,0.05); }
+
+  .skill-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+
+  .skill-sub {
+    font-size: 12px;
+    color: #5a7a99;
+    line-height: 1.5;
+  }
+
+  /* ── PROJECTS ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+  }
+
+  .project-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 36px;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(15,26,46,0.1); }
+
+  .project-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .project-card:hover::after { transform: scaleX(1); }
+
+  .project-icon {
+    font-size: 28px;
+    margin-bottom: 18px;
+  }
+
+  .project-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+
+  .project-desc {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+
+  /* ── EDUCATION ── */
+  .edu-bg { background: var(--white); }
+
+  .edu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .edu-card {
+    background: var(--bg);
+    padding: 36px;
+    border: 1px solid var(--border);
+    position: relative;
+  }
+
+  .edu-badge {
+    display: inline-block;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    font-size: 11px;
+    padding: 5px 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .edu-institution {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .edu-degree {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .edu-year {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── TAGS ── */
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 28px;
+  }
+
+  .tag {
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    font-size: 11px;
+    padding: 6px 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    padding: 52px 0;
+    text-align: center;
+  }
+
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+
+  .footer-sub {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+  }
+
+  .footer-link {
+    font-size: 12px;
+    color: #4a6280;
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .footer-link:hover { color: var(--accent); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-left::after { display: none; }
+    .hero-right { padding: 60px 40px; }
+    .hero-left { padding: 80px 40px 60px; }
+    .exp-wrapper { grid-template-columns: 1fr; gap: 32px; }
+    .edu-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    .container { padding: 0 24px; }
+    section { padding: 60px 0; }
+    .hero-left, .hero-right { padding: 60px 24px; }
+    .hero-stats { grid-template-columns: 1fr 1fr; gap: 20px; }
+  }
+
+  /* Animate in */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-left > * { animation: fadeUp 0.7s ease both; }
+  .hero-left > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-left > *:nth-child(2) { animation-delay: 0.2s; }
+  .hero-left > *:nth-child(3) { animation-delay: 0.3s; }
+  .hero-left > *:nth-child(4) { animation-delay: 0.4s; }
+  .hero-left > *:nth-child(5) { animation-delay: 0.5s; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-tag">Finance · Analytics · CFA Aspirant 2026</p>
+    <h1 class="hero-name">Sanchita<br><em>Jadhav</em></h1>
+    <p class="hero-role">Financial Analyst &amp; Data-Driven Strategist</p>
+    <p class="hero-bio">Final-year B.Com student specialising in Banking &amp; Insurance, with hands-on experience in valuations, investment modelling, and financial data analysis. Bridging traditional finance with modern analytical tools.</p>
+    <div class="hero-cta">
+      <a href="mailto:work.s2024@outlook.com" class="btn-primary">Get in Touch</a>
+      <a href="https://www.linkedin.com/in/sanchitajadhav006" target="_blank" class="btn-outline">LinkedIn ↗</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-stats">
+      <div class="stat-box">
+        <div class="stat-num">2026</div>
+        <div class="stat-label">CFA Aspirant</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Live Projects</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Core Skills</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">1</div>
+        <div class="stat-label">Internship</div>
+      </div>
+    </div>
+    <div class="contact-strip">
+      <a href="mailto:work.s2024@outlook.com" class="contact-item">
+        <span class="contact-dot"></span> work.s2024@outlook.com
+      </a>
+      <a href="tel:+918850851356" class="contact-item">
+        <span class="contact-dot"></span> +91 88508 51356
+      </a>
+      <span class="contact-item">
+        <span class="contact-dot"></span> Kharghar, Mumbai, India
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-bg">
+  <div class="container">
+    <p class="section-label">What I Offer</p>
+    <h2 class="section-title">Services &amp; Expertise</h2>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <span class="service-num">01</span>
+        <div class="service-icon">📊</div>
+        <h3 class="service-title">Company Valuation &amp; DCF Modelling</h3>
+        <p class="service-desc">Building and interpreting Discounted Cash Flow models to estimate the intrinsic value of companies or projects — forecasting future cash flows, discount rates, and sensitivity analysis.</p>
+      </div>
+
+      <div class="service-card">
+        <span class="service-num">02</span>
+        <div class="service-icon">🏦</div>
+        <h3 class="service-title">Alternative Investment Analysis</h3>
+        <p class="service-desc">Evaluation of non-traditional asset classes — private equity, hedge funds, real estate, and commodities — to diversify portfolios, assess risk-return profiles, and enhance returns.</p>
+      </div>
+
+      <div class="service-card">
+        <span class="service-num">03</span>
+        <div class="service-icon">📈</div>
+        <h3 class="service-title">NAV Modelling &amp; Fund Analysis</h3>
+        <p class="service-desc">Calculating and monitoring Net Asset Value for investment funds and portfolios, incorporating asset valuations, liabilities, and performance metrics to assess investor returns.</p>
+      </div>
+
+      <div class="service-card">
+        <span class="service-num">04</span>
+        <div class="service-icon">🔢</div>
+        <h3 class="service-title">Ratio &amp; Financial Statement Analysis</h3>
+        <p class="service-desc">Applying liquidity, profitability, leverage, and efficiency ratios alongside cash flow analysis to diagnose business performance and support informed investment decisions.</p>
+      </div>
+
+      <div class="service-card">
+        <span class="service-num">05</span>
+        <div class="service-icon">🐍</div>
+        <h3 class="service-title">Python &amp; Data-Driven Finance</h3>
+        <p class="service-desc">Using Python and AI tools to automate financial analysis, build data models, and extract actionable insights from large datasets — bridging finance and technology.</p>
+      </div>
+
+      <div class="service-card">
+        <span class="service-num">06</span>
+        <div class="service-icon">📋</div>
+        <h3 class="service-title">Investor Reports &amp; KPI Dashboards</h3>
+        <p class="service-desc">Crafting Excel-based dashboards and investor-ready pitch decks that communicate financial performance clearly — tracking KPIs, investment returns, and strategic metrics.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section>
+  <div class="container">
+    <p class="section-label">Professional Experience</p>
+    <h2 class="section-title">Where I've Worked</h2>
+    <div class="exp-wrapper">
+      <div>
+        <div class="exp-card">
+          <div class="exp-company">Unified Mentor Pvt. Ltd</div>
+          <div class="exp-role">Financial Analyst Intern</div>
+          <div class="exp-date">Oct 2024 – Nov 2024 · Mumbai, India</div>
+          <p style="font-size:13px; color:var(--muted); line-height:1.7;">Worked with senior analysts across ed-tech and fintech startup clients, delivering real financial research and investor materials under demanding timelines.</p>
+        </div>
+      </div>
+      <div>
+        <ul class="exp-list">
+          <li>Conducted financial research and built valuation models for startup clients in the ed-tech and fintech sectors.</li>
+          <li>Analysed cost structures and revenue streams to support budgeting and strategic planning for clients.</li>
+          <li>Created Excel-based dashboards to track KPIs, investment performance, and cash flow trends.</li>
+          <li>Collaborated with senior analysts to prepare pitch decks and investor reports for fundraising initiatives.</li>
+        </ul>
+        <div class="tag-list">
+          <span class="tag">Valuation</span>
+          <span class="tag">Excel Dashboards</span>
+          <span class="tag">Pitch Decks</span>
+          <span class="tag">Cash Flow Analysis</span>
+          <span class="tag">Fintech</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-bg">
+  <div class="container">
+    <p class="section-label">Technical Toolkit</p>
+    <h2 class="section-title">Skills &amp; Tools</h2>
+    <div class="skills-grid">
+      <div class="skill-item">
+        <div class="skill-name">Python</div>
+        <div class="skill-sub">Data analysis, automation, financial scripting</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">Advanced Excel</div>
+        <div class="skill-sub">Financial models, dashboards, KPI tracking</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">DCF &amp; Valuation</div>
+        <div class="skill-sub">Intrinsic value, forecast modelling, sensitivity analysis</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">Alternative Investments</div>
+        <div class="skill-sub">Private equity, hedge funds, REITs, commodities</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">NAV Modelling</div>
+        <div class="skill-sub">Fund valuation, performance metrics, investor returns</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">Ratio &amp; Statement Analysis</div>
+        <div class="skill-sub">Liquidity, profitability, leverage, efficiency ratios</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">Artificial Intelligence</div>
+        <div class="skill-sub">AI-assisted financial research and decision support</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">Microsoft Office Suite</div>
+        <div class="skill-sub">PowerPoint pitch decks, Word reports, Outlook</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section>
+  <div class="container">
+    <p class="section-label">Selected Work</p>
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-icon">🏗️</div>
+        <h3 class="project-title">Diversified Alternative Investments Portfolio</h3>
+        <p class="project-desc">Constructed and analysed a diversified portfolio of alternative asset classes including private equity, real estate, and hedge funds — evaluating risk-return trade-offs and portfolio diversification benefits.</p>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">🏢</div>
+        <h3 class="project-title">REIT Comparison Analysis</h3>
+        <p class="project-desc">Conducted a comparative study of Real Estate Investment Trusts, benchmarking NAV, yield, and performance metrics to identify investment opportunities and assess relative valuation across fund types.</p>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">📐</div>
+        <h3 class="project-title">Step-Up SIP Calculator</h3>
+        <p class="project-desc">Built a financial tool to model and visualise Systematic Investment Plan returns with annual step-up contributions — helping investors project long-term wealth accumulation through compounding.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="edu-bg">
+  <div class="container">
+    <p class="section-label">Academic Background</p>
+    <h2 class="section-title">Education</h2>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <span class="edu-badge">Undergraduate · Current</span>
+        <div class="edu-institution">S.I.E.S College of Arts, Science &amp; Commerce</div>
+        <div class="edu-degree">B.Com — Banking &amp; Insurance</div>
+        <div class="edu-year">Jun 2024 – Jun 2027 · Nerul, Maharashtra</div>
+      </div>
+      <div class="edu-card">
+        <span class="edu-badge">Secondary Education</span>
+        <div class="edu-institution">D.A.V International School</div>
+        <div class="edu-degree">General Schooling</div>
+        <div class="edu-year">Mar 2012 – Mar 2024 · Kharghar, Maharashtra</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 52px; background: var(--ink); padding: 40px 44px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px;">
+      <div>
+        <p style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--accent); margin-bottom:10px;">Currently Pursuing</p>
+        <p style="font-family:'Cormorant Garamond', serif; font-size:28px; font-weight:300; color:#fff;">Chartered Financial Analyst (CFA)</p>
+        <p style="font-size:13px; color:#5a7a99; margin-top:6px;">CFA Institute · Target: 2026</p>
+      </div>
+      <div style="text-align:right;">
+        <p style="font-size:13px; color:#5a7a99; line-height:1.8; max-width:300px;">Preparing for the globally recognized CFA designation — covering portfolio management, equity, fixed income, derivatives, and ethics.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Sanchita Jadhav</div>
+  <div class="footer-sub">Financial Analyst · Mumbai, India</div>
+  <div class="footer-links">
+    <a href="mailto:work.s2024@outlook.com" class="footer-link">Email</a>
+    <a href="tel:+918850851356" class="footer-link">Phone</a>
+    <a href="https://www.linkedin.com/in/sanchitajadhav006" target="_blank" class="footer-link">LinkedIn</a>
+  </div>
+  <p style="font-size:11px; color:#2a3d5a; margin-top:32px;">© 2025 Sanchita Jadhav</p>
+</footer>
+
+</body>
+</html>
